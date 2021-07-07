@@ -1,0 +1,30 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+yaml:
+  path: /yaml
+  controller: App\Controller\YamlController::index
+
+addOrganization:
+  path: /yaml/add
+  controller: App\Controller\YamlController::addOrganization
+
+editOrganization:
+  path: /yaml/edit/{organization}
+  controller: App\Controller\YamlController::editOrganization
+
+deleteOrganization:
+  path: /yaml/delete/{organization}
+  controller: App\Controller\YamlController::deleteOrganization
+
+organization:
+  path: /yaml/{organization}
+  controller: App\Controller\YamlController::indexOrganization
+
+user:
+  path: /yaml/users/{organization}/{user}
+  controller: App\Controller\YamlController::indexUser
+
+editUser:
+  path: /yaml/users/edit/{organization}/{user}
+  controller: App\Controller\YamlController::editUser

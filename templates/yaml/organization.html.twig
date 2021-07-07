@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if viewMode == 'view' or viewMode == 'edit' %} {{ organization['name'] }} {% endif %}</title>
+</head>
+<body>
+{% if viewMode == 'view' %}
+<a href="{{ path('editOrganization',  {organization: organization['name']}) }}" class="btn btn-primary">Modifier l'organisation</a>
+    <a href="{{ path('deleteOrganization',  {organization: organization['name']}) }}" class="btn btn-primary">Supprimer l'organisation</a>
+    <form>
+        <fieldset disabled="disabled">
+    {% endif %}
+    {% if viewMode == 'edit' %}
+            <form action="{{ path('editOrganization',  {organization: organization['name']}) }}" method="POST">
+    {% endif %}
+                {% if viewMode == 'add' %}
+                <form action="{{ path('addOrganization')}}" method="POST">
+                    {% endif %}
+                <div class="form-group">
+                    <label for="organizationName">Nom de l'organisation</label>
+                    <input type="text" name="organization" {% if viewMode == 'view' or viewMode == 'edit' %} value="{{ organization['name']}}" {% endif %}class="form-control" id="organizationName">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description de l'organisation</label>
+                    <textarea class="form-control" name="description" id="description" rows="3"> {% if viewMode == "view" or viewMode == "edit" %} {{ organization['description'] }} {% endif %}</textarea>
+                </div>
+                    {% if viewMode == 'edit' or viewMode == 'add' %}
+                        <button type="submit" class="btn btn-secondary">Envoyer</button>
+                    {% endif %}
+                {% if viewMode == 'view' %}
+            </fieldset>
+            {% endif %}
+        </form>
+    {% if viewMode == 'edit' or viewMode == 'view' %}
+        <h1>Liste des utilisateurs de l'organisation {{ organization['name'] }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Utilisateur</th>
+                    <th>Role</th>
+                    <th>Mot de passe</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in organization['users'] %}
+                <tr>
+                    <td><a href="{{ path('user',  {organization: organization['name'], user: user['name']}) }}">{{ user['name'] }}</a></td>
+                    <td>
+                {% for role in user['role'] %}
+                        {{ role }} /
+                {% endfor %}
+                    </td>
+                    <td>{{ user['password'] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Organisations</title>
+
+    </head>
+    <body>
+    <a href="{{ path('addOrganization')}}">Ajouter une nouvelle organisation</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Organisation</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for organization in yamlFile %}
+            <tr>
+                <td><a href="{{ path('organization',  {organization: organization['name']}) }}">{{organization['name']}}</a></td>
+                <td>{{ organization['description'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </body>
+</html>
