@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>{% if viewMode == 'view' or viewMode == 'edit' %} {{ organization['name'] }} {% endif %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 {% if viewMode == 'view' %}
-<a href="{{ path('editOrganization',  {organization: organization['name']}) }}" class="btn btn-primary">Modifier l'organisation</a>
-    <a href="{{ path('deleteOrganization',  {organization: organization['name']}) }}" class="btn btn-primary">Supprimer l'organisation</a>
+    <a href="{{ path('yaml')}}" class="btn btn-primary">< retour à la liste des organisations </a>
+<a href="{{ path('editOrganization',  {organization: organization['name']}) }}" class="btn btn-warning">Modifier l'organisation</a>
+    <a href="{{ path('deleteOrganization',  {organization: organization['name']}) }}" class="btn btn-danger">Supprimer l'organisation</a>
     <form>
         <fieldset disabled="disabled">
     {% endif %}
@@ -34,12 +36,12 @@
         </form>
     {% if viewMode == 'edit' or viewMode == 'view' %}
         <h1>Liste des utilisateurs de l'organisation {{ organization['name'] }}</h1>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <th>Utilisateur</th>
-                    <th>Role</th>
-                    <th>Mot de passe</th>
+                    <th scope="col">Utilisateur</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Mot de passe</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,4 +60,7 @@
         </table>
     {% endif %}
     </body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>

@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Utilisateur {{ user['name'] }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 {% if viewMode == 'view' %}
-<a href="{{ path('editUser',  {organization: organization['name'], user: user['name']}) }}" class="btn btn-primary">Modifier l'utilisateur</a>
+<a href="{{ path('organization',  {organization: organization['name']}) }}" class="btn btn-primary">< retour à l'organisation </a>
+<a href="{{ path('editUser',  {organization: organization['name'], user: user['name']}) }}" class="btn btn-warning">Modifier l'utilisateur</a>
 <form>
     <fieldset disabled="disabled">
         {% endif %}
